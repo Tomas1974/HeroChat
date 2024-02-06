@@ -118,7 +118,7 @@ import {UtilitiesService} from "./utilities.service";
 })
 export class AppComponent {
 
-  superHeroes: string[]=["No selection","Superman","Spiderman","Iron Man", "Batman","Captain America"];
+  superHeroes: string[]=["Superman","Spiderman","Iron Man", "Batman","Captain America"];
   chatToHeroes: string[]=[];
   selectedHero: string="";
   selectedToMessageTo: string="";
