@@ -1,18 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\service\\service.csproj": {}
+    "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\infrastructure.csproj": {
+    "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\infrastructure.csproj",
         "projectName": "infrastructure",
-        "projectPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\infrastructure.csproj",
+        "projectPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\infrastructure.csproj",
         "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\tomas\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
@@ -57,15 +60,18 @@
         }
       }
     },
-    "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\service\\service.csproj": {
+    "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\service\\service.csproj",
+        "projectUniqueName": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj",
         "projectName": "service",
-        "projectPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\service\\service.csproj",
+        "projectPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj",
         "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\service\\obj\\",
+        "outputPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\tomas\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
@@ -79,8 +85,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\infrastructure.csproj": {
-                "projectPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\infrastructure.csproj"
+              "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\infrastructure.csproj": {
+                "projectPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\infrastructure.csproj"
               }
             }
           }

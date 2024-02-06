@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WbxDVaep+V7nfeNH8ItjykNpTKpA/zuroYC9Ef1yjO1pWdDYY18vgqWVa3BL6IuUuJKWViSSSMtKezLzgwUtGA==",
+  "dgSpecHash": "IBpmrvEQApjFcsMa8Y+awUGCwnM67l1N3VkvzWYN2UvA+SeHnCeWcoEGlQt9yz7e9qYP2dvu+0UN8W4uG8x2Dw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\service\\service.csproj",
+  "projectFilePath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

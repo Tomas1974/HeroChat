@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "29chl4o8Gss1TUSU6RsvcbKLObPId4k0CquNALNKjg95n5Bb0fdLcxqxx2SCUkGIY+Y/eb05qXuV1dX1BeWg5Q==",
+  "dgSpecHash": "KAUaBVOkRqOHLkQ6r3xX27nNYrroV+U4lFbuBCJwaFT07nDGVPuPUC7fvUB32xXZkdxSYRrHE/D9uZr72CxjpA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\api\\api.csproj",
+  "projectFilePath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tomas\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.1\\microsoft.aspnetcore.openapi.8.0.1.nupkg.sha512",
     "C:\\Users\\tomas\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

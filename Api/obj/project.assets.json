@@ -494,17 +494,21 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tomas\\.nuget\\packages\\": {}
+    "C:\\Users\\tomas\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\api\\api.csproj",
+      "projectPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\api\\api.csproj",
       "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\api\\obj\\",
+      "outputPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\tomas\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
@@ -518,8 +522,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\service\\service.csproj": {
-              "projectPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\service\\service.csproj"
+            "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj": {
+              "projectPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj"
             }
           }
         }

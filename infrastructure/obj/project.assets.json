@@ -8,17 +8,21 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\tomas\\.nuget\\packages\\": {}
+    "C:\\Users\\tomas\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\infrastructure.csproj",
       "projectName": "infrastructure",
-      "projectPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\infrastructure.csproj",
+      "projectPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\infrastructure.csproj",
       "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tomas\\Desktop\\Dotnet 3 lag\\infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\tomas\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
