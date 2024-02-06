@@ -1,6 +1,6 @@
 import {messageModel, roomModel} from "./messageModel";
 
-export const roomNumberArray: roomModel[] = [
+export const roomNumberArray_mock: roomModel[] = [
   { room: 1,from: "Superman",to: "Spiderman" },
   { room: 1,from: "Spiderman",to: "Superman"},
   { room: 2,from: "Superman",to: "Iron Man"},

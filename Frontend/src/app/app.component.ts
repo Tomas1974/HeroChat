@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MessageService} from "./message.service";
 import {messageModel} from "./Data/messageModel";
-import {UtilitiesService} from "./utilities.service";
+
 
 @Component({
   selector: 'app-root',
@@ -112,13 +112,12 @@ import {UtilitiesService} from "./utilities.service";
      </ion-app>
 
 
-
   `,
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
 
-  superHeroes: string[]=["Superman","Spiderman","Iron Man", "Batman","Captain America"];
+  superHeroes: string[]=this.messageService.superHeroes;
   chatToHeroes: string[]=[];
   selectedHero: string="";
   selectedToMessageTo: string="";
@@ -126,8 +125,9 @@ export class AppComponent {
   messageArray: string[]=[];
   roomNumber:number=0;
 
-  constructor(public messageService: MessageService,
-              public utilitiService: UtilitiesService) {}
+  constructor(public messageService: MessageService ) {}
+
+
 
   sendMessage() {
     this.messageArray.push("["+this.selectedHero+"]: "+this.message);
@@ -147,7 +147,7 @@ export class AppComponent {
 
   getChatMessages() {
 
-  this.roomNumber=this.utilitiService.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
+  this.roomNumber=this.messageService.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
    this.messageArray=this.messageService.filterMessagesByFromAndTo(this.roomNumber);
 
   }
