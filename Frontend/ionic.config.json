@@ -1,0 +1,7 @@
+{
+  "name": "Super_hero_chat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,33 @@
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\appsettings.json
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Websocket_fødselsdag 2.exe
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Websocket_fødselsdag 2.deps.json
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Websocket_fødselsdag 2.runtimeconfig.json
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Websocket_fødselsdag 2.dll
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Websocket_fødselsdag 2.pdb
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.csproj.AssemblyReference.cache
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.AssemblyInfoInputs.cache
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.AssemblyInfo.cs
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.csproj.CoreCompileInputs.cache
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\staticwebassets\msbuild.Websocket_fødselsdag 2.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\staticwebassets\msbuild.build.Websocket_fødselsdag 2.props
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Websocket_fødselsdag 2.props
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Websocket_fødselsdag 2.props
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\scopedcss\bundle\Websocket_fødselsdag 2.styles.css
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.csproj.CopyComplete
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.dll
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\refint\Websocket_fødselsdag 2.dll
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.pdb
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\Websocket_fødselsdag 2.genruntimeconfig.cache
+C:\Users\tomas\Desktop\Websocket_fødselsdag 2\api\obj\Debug\net8.0\ref\Websocket_fødselsdag 2.dll
