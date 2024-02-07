@@ -1,8 +1,8 @@
 export interface messageModel
 {
   room: number;
-  message: string;
-  from: string;
+  ChatMessage: string;
+  ChatFrom: string;
 
 }
 

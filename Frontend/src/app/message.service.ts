@@ -12,14 +12,14 @@ export class MessageService {
   selectedMessageArray: messageModel[]=[];
   roomNumberArray: roomModel[]=roomNumberArray_mock;
   superHeroes: string[]=["Superman","Spiderman","Iron Man", "Batman","Captain America"];
-  
+
   constructor() { }
 
-  
+
   filterMessagesByFromAndTo(room: number ): string[] {
    this.selectedMessageArray= this.serviceMessageArray.filter(mes => mes.room==room);
 
-   const messageString = this.selectedMessageArray.map(message => `[${message.from}]: ${message.message}`);
+   const messageString = this.selectedMessageArray.map(message => `[${message.ChatFrom}]: ${message.ChatMessage}`);
 
    return messageString;
   }
