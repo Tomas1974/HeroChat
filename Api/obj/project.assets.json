@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "Fleck/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/Fleck.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/Fleck.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/8.0.1": {
         "type": "package",
         "dependencies": {
@@ -108,6 +117,21 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "uldahlalex.websocket.boilerplate/1.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Fleck": "1.2.0"
+        },
+        "compile": {
+          "lib/net8.0/lib.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/lib.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -134,6 +158,21 @@
     }
   },
   "libraries": {
+    "Fleck/1.2.0": {
+      "sha512": "bPLXn6QbLAFoviur6XbrKB0Zn6x04E8VibHXyHZeJsoC7bkUl5DVtzM5cZgDuqHkIrBqAXJyTNJwSNIc6wBJ2Q==",
+      "type": "package",
+      "path": "fleck/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fleck.1.2.0.nupkg.sha512",
+        "fleck.nuspec",
+        "lib/net40/Fleck.dll",
+        "lib/net45/Fleck.dll",
+        "lib/netcoreapp2.0/Fleck.dll",
+        "lib/netstandard2.0/Fleck.dll"
+      ]
+    },
     "Microsoft.AspNetCore.OpenApi/8.0.1": {
       "sha512": "JF0U31SByntKEhZNC8ch3CD87BLZb5AzSujOBppLdvnjYu3W2XZvlsol5hUJfxiaHOp720cUiL6wzG8Bv0fI2Q==",
       "type": "package",
@@ -475,6 +514,18 @@
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
+    "uldahlalex.websocket.boilerplate/1.4.0": {
+      "sha512": "VzeoYKTHG5N+PKFNQ+MqyLiLhhKq4RarFrCxZm6+1NiLTVayuHUGbi58DEpR2lUugCWyuhktXwuQdvJ1K6u+gw==",
+      "type": "package",
+      "path": "uldahlalex.websocket.boilerplate/1.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/lib.dll",
+        "uldahlalex.websocket.boilerplate.1.4.0.nupkg.sha512",
+        "uldahlalex.websocket.boilerplate.nuspec"
+      ]
+    },
     "infrastructure/1.0.0": {
       "type": "project",
       "path": "../infrastructure/infrastructure.csproj",
@@ -488,42 +539,42 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Fleck >= 1.2.0",
       "Microsoft.AspNetCore.OpenApi >= 8.0.1",
       "Swashbuckle.AspNetCore >= 6.4.0",
-      "service >= 1.0.0"
+      "service >= 1.0.0",
+      "uldahlalex.websocket.boilerplate >= 1.4.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tomas\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\kaspe\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\kaspe\\Documents\\4.semester\\DevOps\\DroneCI\\HeroChat\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\api\\api.csproj",
-      "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\api\\obj\\",
+      "projectPath": "C:\\Users\\kaspe\\Documents\\4.semester\\DevOps\\DroneCI\\HeroChat\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\kaspe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kaspe\\Documents\\4.semester\\DevOps\\DroneCI\\HeroChat\\api\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\tomas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\kaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj": {
-              "projectPath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\service\\service.csproj"
+            "C:\\Users\\kaspe\\Documents\\4.semester\\DevOps\\DroneCI\\HeroChat\\service\\service.csproj": {
+              "projectPath": "C:\\Users\\kaspe\\Documents\\4.semester\\DevOps\\DroneCI\\HeroChat\\service\\service.csproj"
             }
           }
         }
@@ -538,6 +589,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Fleck": {
+            "target": "Package",
+            "version": "[1.2.0, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[8.0.1, )"
@@ -545,6 +600,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.4.0, )"
+          },
+          "uldahlalex.websocket.boilerplate": {
+            "target": "Package",
+            "version": "[1.4.0, )"
           }
         },
         "imports": [

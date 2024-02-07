@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oN4VtIJmoMXeiyvdsawIchMFMTO3RSH4Z8xty6Wuo9CvT+LvkKNeBTD9/SNB5doOGICOcudj33ZwJ7VlPGY6nQ==",
+  "dgSpecHash": "Rl60NGAvc2QC9k8Py5Hp2ARobaAhxIvWoLVTWaneZ2awvCqOfse5LQlPtcD9KylpaLPuas+LNKD/7mcVfkgMHQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tomas\\Desktop\\HeroChat\\HeroChat\\infrastructure\\infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\kaspe\\Documents\\4.semester\\DevOps\\DroneCI\\HeroChat\\infrastructure\\infrastructure.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
