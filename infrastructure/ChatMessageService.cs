@@ -15,7 +15,7 @@ public class ChatMessageService(NpgsqlDataSource _dataSource)
         }
     }
     
-    public MessageModel CreateAvatar(MessageModel message)
+    public MessageModel CreateMessage(MessageModel message)
     {
         var sql =
             @" INSERT INTO messages (ChatFrom,Room,ChatMessage) VALUES (@chatFrom, @room, @chatMessage) RETURNING *;";
