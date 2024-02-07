@@ -1,11 +1,29 @@
 using System;
 using System.Reflection;
 using Fleck;
+using infrastructure;
 using lib;
 using Microsoft.AspNetCore.Builder;
+using Service;
 using ws;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString,
+        dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
+}
+
+if (builder.Environment.IsProduction())
+{
+    builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString);
+}
+
+builder.Services.AddSingleton<ChatMessageService>();
+builder.Services.AddSingleton<MessageService>();
 
 var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
 

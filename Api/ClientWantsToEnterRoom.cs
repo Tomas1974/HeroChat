@@ -2,24 +2,16 @@
 using System.Threading.Tasks;
 using Fleck;
 using lib;
+using Service;
 
 namespace ws;
 
-public class ClientWantsToEnterRoomDto : BaseDto
+public class ClientWantsToEnterRoomDto(MessageService messageService) : BaseDto
 {
-    public int roomId { get; set; }
-}
-
-public class ClientWantsToEnterRoom : BaseEventHandler<ClientWantsToEnterRoomDto>
-{
+    
     public override Task Handle(ClientWantsToEnterRoomDto dto, IWebSocketConnection socket)
     {
-        var isSuccess = StateService.AddToRoom(socket, dto.roomId);
-        socket.Send(JsonSerializer.Serialize(new ServerAddsClientToRoom()
-        {
-            //TODO Send tidligere beskeder til frontend.
-            message = "you were succesfully added to room with ID " + dto.roomId
-        }));
+        messageService.GetMessages();
         return Task.CompletedTask;
     }
 }
