@@ -17,6 +17,7 @@ public class ClientWantsToEnterRoom : BaseEventHandler<ClientWantsToEnterRoomDto
         var isSuccess = StateService.AddToRoom(socket, dto.roomId);
         socket.Send(JsonSerializer.Serialize(new ServerAddsClientToRoom()
         {
+            //TODO Send tidligere beskeder til frontend.
             message = "you were succesfully added to room with ID " + dto.roomId
         }));
         return Task.CompletedTask;
