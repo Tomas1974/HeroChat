@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Websocket_fødselsdag 2.props" />
-</Project>
