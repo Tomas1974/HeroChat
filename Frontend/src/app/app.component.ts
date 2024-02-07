@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from "./message.service";
-import {messageModel} from "./Data/messageModel";
-
 
 @Component({
   selector: 'app-root',
@@ -125,17 +123,27 @@ export class AppComponent {
   messageArray: string[]=[];
   roomNumber:number=0;
 
-  constructor(public messageService: MessageService ) {}
+  ws : WebSocket = new WebSocket("ws://localhost:8181")
 
+  constructor(public messageService: MessageService ) {
 
+    this.ws.onmessage = message => {
+      this.messageArray.push(message.data);
+    }
+
+  }
 
   sendMessage() {
+
+    this.ws.send(this.message);
+
+
     this.messageArray.push("["+this.selectedHero+"]: "+this.message);
 
-    const mesageModel:messageModel={room: this.roomNumber, message: this.message, from:this.selectedHero};
-    this.messageService.saveMessage(mesageModel);
+    //const mesageModel:messageModel={room: this.roomNumber, message: this.message, from:this.selectedHero};
+    //this.messageService.saveMessage(mesageModel);
 
-    this.message="";
+    //this.message="";
 
   }
 
@@ -147,16 +155,16 @@ export class AppComponent {
 
   getChatMessages() {
 
-  this.roomNumber=this.messageService.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
-   this.messageArray=this.messageService.filterMessagesByFromAndTo(this.roomNumber);
+  //this.roomNumber=this.messageService.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
+   //this.messageArray=this.messageService.filterMessagesByFromAndTo(this.roomNumber);
 
   }
 
   getHeroesToChat()
   {
-    this.chatToHeroes=this.superHeroes.filter(heroes => heroes!=this.selectedHero);
-    this.messageArray=[];
-    this.selectedToMessageTo="";
+    //this.chatToHeroes=this.superHeroes.filter(heroes => heroes!=this.selectedHero);
+    //this.messageArray=[];
+    //this.selectedToMessageTo="";
   }
 
 
