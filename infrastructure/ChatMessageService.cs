@@ -5,13 +5,13 @@ namespace infrastructure;
 
 public class ChatMessageService(NpgsqlDataSource _dataSource)
 {
-    public IEnumerable<MessageModel> GetMessages ()
+    public string[] GetMessages (int roomId)
     {
-        var sql = @"SELECT * FROM webshop.avatar where deleted=true ORDER BY avatar_id;";
+        var sql = @"SELECT chatmessage FROM messages where Room= @roomId";
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.Query<MessageModel>(sql);
+            return conn.QueryFirst<string[]>(sql, roomId);
         }
     }
     

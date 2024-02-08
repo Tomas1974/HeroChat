@@ -4,9 +4,9 @@ namespace Service;
 
 public class MessageService(ChatMessageService _chatMessageRepository)
 {
-    public IEnumerable<MessageModel> GetMessages()
+    public string[] GetMessages(int roomId)
     {
-        return _chatMessageRepository.GetMessages();
+        return _chatMessageRepository.GetMessages(roomId);
     }
     
     public MessageModel CreateAvatar(MessageModel message)

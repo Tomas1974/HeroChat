@@ -22,3 +22,4 @@ export class ServerBroadcastsMessageWithUsername extends BaseDto<ServerBroadcast
   message?: string[];
   username?: string[];
 }
+

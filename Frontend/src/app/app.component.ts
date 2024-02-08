@@ -24,7 +24,7 @@ import {messageModel} from "./Data/messageModel";
         <ion-row>
         <ion-list>
         <ion-item>
-            <ion-select placeholder="Super Name" [(ngModel)]="selectedHero" (ionChange)="getHeroesToChat()">
+            <ion-select placeholder="Super Name" [(ngModel)]="messageService.selectedHero" (ionChange)="getHeroesToChat()">
               <div slot="label">
                 <ion-text >Name</ion-text>
               </div>
@@ -118,7 +118,7 @@ export class AppComponent {
 
   superHeroes: string[]=this.messageService.superHeroes;
   chatToHeroes: string[]=[];
-  selectedHero: string="";
+
   selectedToMessageTo: string="";
   message: string="";
   messageArray: string[]=[];
@@ -139,9 +139,9 @@ export class AppComponent {
     this.ws.send(this.message);
 
 
-    this.messageArray.push("["+this.selectedHero+"]: "+this.message);
+    this.messageArray.push("["+this.messageService.selectedHero+"]: "+this.message);
 
-    const mesageModel:messageModel={room: this.roomNumber, ChatMessage: this.message, ChatFrom:this.selectedHero};
+    const mesageModel:messageModel={room: this.roomNumber, ChatMessage: this.message, ChatFrom:this.messageService.selectedHero};
     this.messageService.saveMessage(mesageModel);
 
     this.message="";
@@ -156,16 +156,18 @@ export class AppComponent {
 
   getChatMessages() {
 
-  this.roomNumber=this.messageService.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
+  this.roomNumber=this.messageService.getRoomNumber(this.messageService.selectedHero, this.selectedToMessageTo)
   this.messageArray=this.messageService.filterMessagesByFromAndTo(this.roomNumber);
+  this.messageService.getMessages(this.roomNumber);
 
   }
 
   getHeroesToChat()
   {
-    this.chatToHeroes=this.superHeroes.filter(heroes => heroes!=this.selectedHero);
+    this.chatToHeroes=this.superHeroes.filter(heroes => heroes!=this.messageService.selectedHero);
    this.messageArray=[];
     this.selectedToMessageTo="";
+    this.messageService.sendHero();
   }
 
 

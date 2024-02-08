@@ -6,17 +6,36 @@ using Service;
 
 namespace ws;
 
-public class ClientWantsToEnterRoomDto(MessageService messageService) : BaseDto
+public class ClientWantsToEnterRoomDto : BaseDto
 {
+
+    public readonly MessageService _messageService;
+    
+    public int roomId { get; set; }
+
+    public ClientWantsToEnterRoomDto(MessageService messageService) 
+    {
+        _messageService = messageService;
+
+    }
+    
     
     public override Task Handle(ClientWantsToEnterRoomDto dto, IWebSocketConnection socket)
     {
-        messageService.GetMessages();
+        var message = new ServerAddsClientToRoom()
+        {
+            
+            
+            message = _messageService.GetMessages(dto.roomId)
+         
+        };
+        //StateService.BroadcastToRoom(dto.roomId, JsonSerializer.Serialize(message));
         return Task.CompletedTask;
     }
 }
 
 public class ServerAddsClientToRoom : BaseDto
 {
-    public string message { get; set; }
+    public string[] message { get; set; }
+    
 }
