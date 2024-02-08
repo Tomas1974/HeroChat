@@ -3,39 +3,54 @@ using System.Threading.Tasks;
 using Fleck;
 using lib;
 using Service;
+using System.Text.Json;
+using Fleck;
+using lib;
+using ws;
 
-namespace ws;
 
 public class ClientWantsToEnterRoomDto : BaseDto
+{
+    public int roomId { get; set; }
+}
+
+public class ClientWantsToEnterRoom : BaseEventHandler<ClientWantsToEnterRoomDto>
 {
 
     public readonly MessageService _messageService;
     
-    public int roomId { get; set; }
-
-    public ClientWantsToEnterRoomDto(MessageService messageService) 
+    public ClientWantsToEnterRoom(MessageService messageService)
     {
         _messageService = messageService;
 
     }
     
-    
     public override Task Handle(ClientWantsToEnterRoomDto dto, IWebSocketConnection socket)
     {
-        var message = new ServerAddsClientToRoom()
+        var isSuccess = StateService.AddToRoom(socket, dto.roomId);
+        socket.Send(JsonSerializer.Serialize(new ServerAddsClientToRoom()
         {
-            
-            
-            message = _messageService.GetMessages(dto.roomId)
-         
-        };
-        //StateService.BroadcastToRoom(dto.roomId, JsonSerializer.Serialize(message));
+            message = "you were succesfully added to room with ID " + dto.roomId
+        }));
         return Task.CompletedTask;
     }
 }
 
 public class ServerAddsClientToRoom : BaseDto
 {
-    public string[] message { get; set; }
-    
+    public string message { get; set; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

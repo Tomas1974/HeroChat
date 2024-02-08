@@ -1,10 +1,13 @@
-﻿using infrastructure;
+﻿using System.Collections;
+using infrastructure;
 
 namespace Service;
 
-public class MessageService(ChatMessageService _chatMessageRepository)
+public class MessageService(ChatMessageRepository _chatMessageRepository)
 {
-    public string[] GetMessages(int roomId)
+    
+    
+    public IEnumerable<string> GetMessages(int roomId)
     {
         return _chatMessageRepository.GetMessages(roomId);
     }

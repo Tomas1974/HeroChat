@@ -22,7 +22,7 @@ if (builder.Environment.IsProduction())
     builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString);
 }
 
-builder.Services.AddSingleton<ChatMessageService>();
+builder.Services.AddSingleton<ChatMessageRepository>();
 builder.Services.AddSingleton<MessageService>();
 
 var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());

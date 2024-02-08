@@ -1,24 +1,25 @@
-﻿using Dapper;
+﻿using System.Collections;
+using Dapper;
 using Npgsql;
 
 namespace infrastructure;
 
-public class ChatMessageService(NpgsqlDataSource _dataSource)
+public class ChatMessageRepository(NpgsqlDataSource _dataSource)
 {
-    public string[] GetMessages (int roomId)
+    public IEnumerable<string> GetMessages (int roomId)
     {
-        var sql = @"SELECT chatmessage FROM messages where Room= @roomId";
+        var sql = @"SELECT * FROM messages where Room= @roomId";
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<string[]>(sql, roomId);
+            return conn.QueryFirst<IEnumerable<string>>(sql, roomId);
         }
     }
     
     public MessageModel CreateMessage(MessageModel message)
     {
         var sql =
-            @" INSERT INTO messages (ChatFrom,Room,ChatMessage) VALUES (@chatFrom, @room, @chatMessage) RETURNING *;";
+            @" INSERT INTO * (ChatFrom,Room,messages) VALUES (@chatFrom, @room, @chatMessage) RETURNING *;";
 
         using (var conn = _dataSource.OpenConnection())
         {
