@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Fleck;
+﻿using Fleck;
 
 namespace ws;
 
 public class WsWithMetadata(IWebSocketConnection connection)
 {
-    public IWebSocketConnection Connection { get; set; } 
+    public IWebSocketConnection Connection { get; set; } = connection;
     public string Username { get; set; }
 }
 
@@ -36,7 +34,5 @@ public static class StateService
                 if (Connections.TryGetValue(guid, out var ws))
                     ws.Connection.Send(message);
             }
-
     }
-
 }
