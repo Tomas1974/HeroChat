@@ -23,7 +23,7 @@ public class ChatMessageRepository(NpgsqlDataSource _dataSource)
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<MessageModel>(sql, new { chatFrom=message.ChatFrom, room=message.RoomId, chatMessage=message.ChatMessage});
+            return conn.QueryFirst<MessageModel>(sql, new { chatFrom=message.ChatFrom, roomId=message.RoomId, chatMessage=message.ChatMessage});
         }
     }
 }
