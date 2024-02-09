@@ -7,7 +7,7 @@ public class MessageService(ChatMessageRepository _chatMessageRepository)
 {
     
     
-    public IEnumerable<ResponseModel> GetMessages(int roomId)
+    public IEnumerable<MessageModel> GetMessages(int roomId)
     {
         return _chatMessageRepository.GetMessages(roomId);
     }

@@ -6,13 +6,13 @@ namespace infrastructure;
 
 public class ChatMessageRepository(NpgsqlDataSource _dataSource)
 {
-    public IEnumerable<ResponseModel> GetMessages (int roomId)
+    public IEnumerable<MessageModel> GetMessages (int roomId)
     {
-        var sql = @"SELECT chatmessage FROM messages where roomid= @roomId";
+        var sql = @"SELECT * FROM messages where roomid= @roomId";
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.Query<ResponseModel>(sql, roomId);
+            return conn.Query<MessageModel>(sql, roomId);
         }
     }
     

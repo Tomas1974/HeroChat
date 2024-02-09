@@ -28,6 +28,8 @@ public class ClientWantsToEnterRoom : BaseEventHandler<ClientWantsToEnterRoomDto
     public override Task Handle(ClientWantsToEnterRoomDto dto, IWebSocketConnection socket)
     {
         var isSuccess = StateService.AddToRoom(socket, dto.roomId);
+        Console.WriteLine(isSuccess+" "+dto.roomId);
+        
         socket.Send(JsonSerializer.Serialize(new ServerAddsClientToRoom()
         {
             message = "you were succesfully added to room with ID " + dto.roomId

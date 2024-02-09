@@ -8,7 +8,3 @@ public class MessageModel
 }
 
 
-public class ResponseModel
-{
-   public string ChatMessage;
-}

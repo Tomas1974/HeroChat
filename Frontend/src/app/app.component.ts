@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MessageService} from "./message.service";
 import {messageModel} from "./Data/messageModel";
 
+
 @Component({
   selector: 'app-root',
   template: `
@@ -70,7 +71,7 @@ import {messageModel} from "./Data/messageModel";
           <ion-list>
             <ion-item>
 
-              <ion-select placeholder="Super name" [(ngModel)]="selectedToMessageTo" (ionChange)="getChatMessages()">
+              <ion-select placeholder="Super name1" [(ngModel)]="selectedToMessageTo" (ionChange)="getChatMessages()">
                 <ion-text >Name</ion-text>
                 <ion-select-option *ngFor="let text of chatToHeroes" [value]="text">{{ text }}</ion-select-option>
               </ion-select>
@@ -122,26 +123,20 @@ export class AppComponent {
   selectedToMessageTo: string="";
   message: string="";
   messageArray: string[]=[];
-  roomNumber:number=0;
 
-  ws : WebSocket = new WebSocket("ws://localhost:8181")
+
+
 
   constructor(public messageService: MessageService ) {
-
-    this.ws.onmessage = message => {
-      this.messageArray.push(message.data);
-    }
 
   }
 
   sendMessage() {
 
-    this.ws.send(this.message);
-
 
     this.messageArray.push("["+this.messageService.selectedHero+"]: "+this.message);
 
-    const mesageModel:messageModel={room: this.roomNumber, ChatMessage: this.message, ChatFrom:this.messageService.selectedHero};
+    const mesageModel:messageModel={room: this.messageService.roomNumber, ChatMessage: this.message, ChatFrom:this.messageService.selectedHero};
     this.messageService.saveMessage(mesageModel);
 
     this.message="";
@@ -150,16 +145,19 @@ export class AppComponent {
 
 
   get concatenatedText(): string {
+
     return this.messageArray.join('\n'); // Concatenate text1 values with newlines
+
   }
 
 
   getChatMessages() {
 
-  this.roomNumber=this.messageService.getRoomNumber(this.messageService.selectedHero, this.selectedToMessageTo)
-  this.messageArray=this.messageService.filterMessagesByFromAndTo(this.roomNumber);
-  this.messageService.getMessages(this.roomNumber);
+  this.messageService.getMessages(this.messageService.roomNumber);
 
+  this.messageService.roomNumber=this.messageService.getRoomNumber(this.messageService.selectedHero, this.selectedToMessageTo)
+    this.messageArray=this.messageService.filterMessagesByFromAndTo();
+    console.log(this.messageArray.length);
   }
 
   getHeroesToChat()
@@ -169,6 +167,8 @@ export class AppComponent {
     this.selectedToMessageTo="";
     this.messageService.sendHero();
   }
+
+
 
 
 

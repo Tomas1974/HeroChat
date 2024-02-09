@@ -2,19 +2,20 @@ import { Injectable } from '@angular/core';
 import {message_mock} from "./Data/message_mock";
 import {messageModel, roomModel} from "./Data/messageModel";
 import {roomNumberArray_mock} from "./Data/roomNumberArray";
-import {BaseDto} from "./BaseDto";
+import {BaseDto, newMessageToStoreDto, ServerSendStoredMessageToClientDto} from "./BaseDto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  serviceMessageArray = message_mock;
+  //serviceMessageArray = message_mock;
+  serviceMessageArray: messageModel[] = [];
   selectedMessageArray: messageModel[] = [];
   roomNumberArray: roomModel[] = roomNumberArray_mock;
   superHeroes: string[] = ["Superman", "Spiderman", "Iron Man", "Batman", "Captain America"];
   selectedHero: string = "";
-
+  roomNumber:number=0;
 
   ws: WebSocket = new WebSocket("ws://localhost:8181")
 
@@ -28,8 +29,12 @@ export class MessageService {
   }
 
 
-  filterMessagesByFromAndTo(room: number): string[] {
-    this.selectedMessageArray = this.serviceMessageArray.filter(mes => mes.room == room);
+  filterMessagesByFromAndTo(): string[] {
+
+
+
+
+    this.selectedMessageArray = this.serviceMessageArray.filter(mes => mes.room == this.roomNumber);
 
     const messageString = this.selectedMessageArray.map(message => `[${message.ChatFrom}]: ${message.ChatMessage}`);
 
@@ -38,6 +43,15 @@ export class MessageService {
 
   saveMessage(messageModel: messageModel) {
     this.serviceMessageArray.push(messageModel);
+
+
+      var object = {
+        eventType: "ClientWantsToBroadcastToRoom",
+        message: messageModel.ChatMessage,
+        roomId: this.roomNumber
+      }
+      this.ws.send(JSON.stringify(object));
+
   }
 
   getRoomNumber(user1: string, user2: string): number {
@@ -67,8 +81,48 @@ export class MessageService {
     }
     this.ws.send(JSON.stringify(object));
 
+    var object1 = {
+      eventType: "ClientWantsToGetStoredMessagesToRoom",
+      roomId: roomNumber
+    }
+    this.ws.send(JSON.stringify(object1));
+
+
+
   }
 
+  ServerSendStoredMessageToClient(dto:ServerSendStoredMessageToClientDto)
+  {
+    this.serviceMessageArray=[];
+
+      // @ts-ignore
+    if (dto.message.length>0)
+    {
+// @ts-ignore
+      for (let i = 0; i < dto.message.length; i++) {
+        let messageModel:messageModel={
+          // @ts-ignore
+          room: dto.roomId[i],
+          // @ts-ignore
+          ChatMessage: dto.message[i],
+          // @ts-ignore
+          ChatFrom: dto.from[i]};
+
+
+        this.serviceMessageArray.push(messageModel);
+      }
+      console.log(this.serviceMessageArray.length)
+    }
+
+  }
+
+  newMessageToStore(dto:newMessageToStoreDto)
+  {
+
+    // @ts-ignore
+    const messageModel:messageModel={room: dto.roomId, ChatMessage: dto.message, ChatFrom:dto.username};
+    this.serviceMessageArray.push(messageModel);
+  }
 
 
 }

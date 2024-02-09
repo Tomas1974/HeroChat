@@ -1,3 +1,5 @@
+import {messageModel} from "./Data/messageModel";
+
 export class BaseDto<T> {
   eventType: string;
 
@@ -8,18 +10,19 @@ export class BaseDto<T> {
 }
 
 
-export class ServerEchosClientDto extends BaseDto<ServerEchosClientDto> {
-  echoValue?: string;
-}
 
+export class ServerSendStoredMessageToClientDto extends BaseDto<ServerSendStoredMessageToClientDto> {
 
-
-export class ServerAddsClientToRoom extends BaseDto<ServerAddsClientToRoom> {
   message?: string[];
+  from?: string[];
+  roomId?: string[];
+
 }
 
-export class ServerBroadcastsMessageWithUsername extends BaseDto<ServerBroadcastsMessageWithUsername> {
-  message?: string[];
-  username?: string[];
-}
 
+export class newMessageToStoreDto extends BaseDto<newMessageToStoreDto> {
+  message?: string;
+  username?:string;
+  roomId?:number;
+
+}

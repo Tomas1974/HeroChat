@@ -31,19 +31,24 @@ public class ClientWantsToGetStoredMessagesToRoom : BaseEventHandler<ClientWants
     
     public override Task Handle(ClientWantsToGetStoredMessagesToRoomDto dto, IWebSocketConnection socket)
     {
-        string[] storeData = new string[_messageService.GetMessages(dto.roomId).Count()];
+        string[] storeMessage = new string[_messageService.GetMessages(dto.roomId).Count()];
+        string[] storeFrom = new string[_messageService.GetMessages(dto.roomId).Count()];
+        string[] storeRoom = new string[_messageService.GetMessages(dto.roomId).Count()];
         var i = 0;
         foreach (var item in _messageService.GetMessages(dto.roomId))
         {
-            storeData[i++] = item.ChatMessage;
-            }
+            storeMessage[i] = item.ChatMessage;
+            storeFrom[i] = item.ChatFrom;
+            storeRoom[i] = item.RoomId+"";
+            i++;
+        }
         
-           
-        
+       
         var message = new ServerSendStoredMessageToClient()
         {
-            message=storeData,
-            username = StateService.Connections[socket.ConnectionInfo.Id].Username
+            message=storeMessage,
+            from = storeFrom,
+            roomId = storeRoom
         };
         StateService.BroadcastToRoom(dto.roomId, JsonSerializer.Serialize(
             message, new JsonSerializerOptions()
@@ -58,5 +63,7 @@ public class ClientWantsToGetStoredMessagesToRoom : BaseEventHandler<ClientWants
 public class ServerSendStoredMessageToClient : BaseDto
 {
     public string[] message { get; set; }
-    public string username { get; set; }
+    public string[] from { get; set; }
+    public string[] roomId { get; set; }
+    
 }

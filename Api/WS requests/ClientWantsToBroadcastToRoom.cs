@@ -36,7 +36,7 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
 
         
             
-        var message = new ServerBroadcastsMessageWithUsername()
+        var message = new newMessageToStore()
         {
             message = dto.message,
             username = StateService.Connections[socket.ConnectionInfo.Id].Username,
@@ -51,7 +51,7 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     }
 }
 
-public class ServerBroadcastsMessageWithUsername : BaseDto
+public class newMessageToStore : BaseDto
 {
     public string message { get; set; }
     public string username { get; set; }
