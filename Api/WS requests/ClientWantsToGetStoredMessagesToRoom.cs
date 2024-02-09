@@ -36,9 +36,7 @@ public class ClientWantsToGetStoredMessagesToRoom : BaseEventHandler<ClientWants
         foreach (var item in _messageService.GetMessages(dto.roomId))
         {
             storeData[i++] = item.ChatMessage;
-            Console.WriteLine(item.ChatMessage);
-         
-        }
+            }
         
            
         

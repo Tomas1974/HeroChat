@@ -31,7 +31,7 @@ var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetE
 
 var app = builder.Build();
 
-//app.Services.GetService<NpgsqlDataSource>().OpenConnection().Execute("SELECT 'hello world'");
+app.Services.GetService<NpgsqlDataSource>().OpenConnection().Execute("SELECT 'hello world'");
 
 var server = new WebSocketServer("ws://0.0.0.0:8181");
 

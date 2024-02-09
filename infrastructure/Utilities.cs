@@ -3,7 +3,7 @@
 public class Utilities
 {
     private static readonly Uri Uri = new(Environment.GetEnvironmentVariable("pgconn")!);
-    //private static readonly Uri Uri = new("postgres://vjljzkim:UOo8Wly-t_Q5vfxaM3_wJyP9kzCu7rM4@snuffleupagus.db.elephantsql.com/vjljzkim");
+    // private static readonly Uri Uri = new("postgres://vjljzkim:nR8wiIfT6gXEt91RBU48uSG1HDUlDpHH@snuffleupagus.db.elephantsql.com/vjljzkim");
     
 
     public static readonly string
