@@ -7,12 +7,12 @@ public class MessageService(ChatMessageRepository _chatMessageRepository)
 {
     
     
-    public IEnumerable<string> GetMessages(int roomId)
+    public IEnumerable<ResponseModel> GetMessages(int roomId)
     {
         return _chatMessageRepository.GetMessages(roomId);
     }
     
-    public MessageModel CreateAvatar(MessageModel message)
+    public MessageModel CreateChatMessage(MessageModel message)
     {
         return _chatMessageRepository.CreateMessage(message);
     }

@@ -6,24 +6,24 @@ namespace infrastructure;
 
 public class ChatMessageRepository(NpgsqlDataSource _dataSource)
 {
-    public IEnumerable<string> GetMessages (int roomId)
+    public IEnumerable<ResponseModel> GetMessages (int roomId)
     {
-        var sql = @"SELECT * FROM messages where Room= @roomId";
+        var sql = @"SELECT chatmessage FROM messages where roomid= @roomId";
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<IEnumerable<string>>(sql, roomId);
+            return conn.Query<ResponseModel>(sql, roomId);
         }
     }
     
     public MessageModel CreateMessage(MessageModel message)
     {
         var sql =
-            @" INSERT INTO * (ChatFrom,Room,messages) VALUES (@chatFrom, @room, @chatMessage) RETURNING *;";
+            @" INSERT INTO messages (ChatFrom,roomid,chatmessage) VALUES (@chatFrom, @roomId, @chatMessage) RETURNING *;";
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<MessageModel>(sql, new { chatFrom=message.ChatFrom, room=message.Room, chatMessage=message.ChatMessage});
+            return conn.QueryFirst<MessageModel>(sql, new { chatFrom=message.ChatFrom, room=message.RoomId, chatMessage=message.ChatMessage});
         }
     }
 }

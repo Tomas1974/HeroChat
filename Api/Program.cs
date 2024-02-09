@@ -1,9 +1,11 @@
 using System;
 using System.Reflection;
+using Dapper;
 using Fleck;
 using infrastructure;
 using lib;
 using Microsoft.AspNetCore.Builder;
+using Npgsql;
 using Service;
 using ws;
 
@@ -29,6 +31,8 @@ var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetE
 
 var app = builder.Build();
 
+//app.Services.GetService<NpgsqlDataSource>().OpenConnection().Execute("SELECT 'hello world'");
+
 var server = new WebSocketServer("ws://0.0.0.0:8181");
 
 
@@ -49,6 +53,7 @@ server.Start(ws =>
         }
         catch (Exception e)
         {
+            ws.Send(e.Message);
             Console.WriteLine(e.Message);
             Console.WriteLine(e.InnerException);
             Console.WriteLine(e.StackTrace);
