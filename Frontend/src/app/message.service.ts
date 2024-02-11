@@ -16,6 +16,9 @@ export class MessageService {
   superHeroes: string[] = ["Superman", "Spiderman", "Iron Man", "Batman", "Captain America"];
   selectedHero: string = "";
   roomNumber:number=0;
+  selectedToMessageTo: string="";
+  messageArray: string[]=[];
+
 
   ws: WebSocket = new WebSocket("ws://localhost:8181")
 
@@ -112,6 +115,9 @@ export class MessageService {
         this.serviceMessageArray.push(messageModel);
       }
       console.log(this.serviceMessageArray.length)
+
+      this.roomNumber=this.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
+      this.messageArray=this.filterMessagesByFromAndTo();
     }
 
   }

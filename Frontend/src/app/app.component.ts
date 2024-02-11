@@ -71,7 +71,7 @@ import {messageModel} from "./Data/messageModel";
           <ion-list>
             <ion-item>
 
-              <ion-select placeholder="Super name1" [(ngModel)]="selectedToMessageTo" (ionChange)="getChatMessages()">
+              <ion-select placeholder="Super name1" [(ngModel)]="this.messageService.selectedToMessageTo" (ionChange)="getChatMessages()">
                 <ion-text >Name</ion-text>
                 <ion-select-option *ngFor="let text of chatToHeroes" [value]="text">{{ text }}</ion-select-option>
               </ion-select>
@@ -120,9 +120,9 @@ export class AppComponent {
   superHeroes: string[]=this.messageService.superHeroes;
   chatToHeroes: string[]=[];
 
-  selectedToMessageTo: string="";
+
   message: string="";
-  messageArray: string[]=[];
+
 
 
 
@@ -134,7 +134,7 @@ export class AppComponent {
   sendMessage() {
 
 
-    this.messageArray.push("["+this.messageService.selectedHero+"]: "+this.message);
+    this.messageService.messageArray.push("["+this.messageService.selectedHero+"]: "+this.message);
 
     const mesageModel:messageModel={room: this.messageService.roomNumber, ChatMessage: this.message, ChatFrom:this.messageService.selectedHero};
     this.messageService.saveMessage(mesageModel);
@@ -146,7 +146,8 @@ export class AppComponent {
 
   get concatenatedText(): string {
 
-    return this.messageArray.join('\n'); // Concatenate text1 values with newlines
+
+    return this.messageService.messageArray.join('\n');
 
   }
 
@@ -155,16 +156,14 @@ export class AppComponent {
 
   this.messageService.getMessages(this.messageService.roomNumber);
 
-  this.messageService.roomNumber=this.messageService.getRoomNumber(this.messageService.selectedHero, this.selectedToMessageTo)
-    this.messageArray=this.messageService.filterMessagesByFromAndTo();
-    console.log(this.messageArray.length);
+
   }
 
   getHeroesToChat()
   {
     this.chatToHeroes=this.superHeroes.filter(heroes => heroes!=this.messageService.selectedHero);
-   this.messageArray=[];
-    this.selectedToMessageTo="";
+   this.messageService.messageArray=[];
+    this.messageService.selectedToMessageTo="";
     this.messageService.sendHero();
   }
 
