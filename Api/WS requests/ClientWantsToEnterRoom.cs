@@ -30,18 +30,12 @@ public class ClientWantsToEnterRoom : BaseEventHandler<ClientWantsToEnterRoomDto
         var isSuccess = StateService.AddToRoom(socket, dto.roomId);
         Console.WriteLine(isSuccess+" "+dto.roomId);
         
-        socket.Send(JsonSerializer.Serialize(new ServerAddsClientToRoom()
-        {
-            message = "you were succesfully added to room with ID " + dto.roomId
-        }));
+        
         return Task.CompletedTask;
     }
 }
 
-public class ServerAddsClientToRoom : BaseDto
-{
-    public string message { get; set; }
-}
+
 
 
 

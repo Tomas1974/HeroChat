@@ -9,15 +9,18 @@ import {BaseDto, newMessageToStoreDto, ServerSendStoredMessageToClientDto} from 
 })
 export class MessageService {
 
-  //serviceMessageArray = message_mock;
-  serviceMessageArray: messageModel[] = [];
-  selectedMessageArray: messageModel[] = [];
+  //serviceMessageArray = message_mock; //Use this if Mockmode is true:
+  serviceMessageArray: messageModel[] = []; //Use this if Mockmode is false:
   roomNumberArray: roomModel[] = roomNumberArray_mock;
+  mockMode : boolean=false;
+
+  selectedMessageArray: messageModel[] = [];
   superHeroes: string[] = ["Superman", "Spiderman", "Iron Man", "Batman", "Captain America"];
   selectedHero: string = "";
   roomNumber:number=0;
   selectedToMessageTo: string="";
   messageArray: string[]=[];
+
 
 
   ws: WebSocket = new WebSocket("ws://localhost:8181")
@@ -33,9 +36,6 @@ export class MessageService {
 
 
   filterMessagesByFromAndTo(): string[] {
-
-
-
 
     this.selectedMessageArray = this.serviceMessageArray.filter(mes => mes.room == this.roomNumber);
 
@@ -114,7 +114,6 @@ export class MessageService {
 
         this.serviceMessageArray.push(messageModel);
       }
-      console.log(this.serviceMessageArray.length)
 
       this.roomNumber=this.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
       this.messageArray=this.filterMessagesByFromAndTo();
@@ -124,10 +123,9 @@ export class MessageService {
 
   newMessageToStore(dto:newMessageToStoreDto)
   {
+    console.log(dto.message + " Hej");
 
-    // @ts-ignore
-    const messageModel:messageModel={room: dto.roomId, ChatMessage: dto.message, ChatFrom:dto.username};
-    this.serviceMessageArray.push(messageModel);
+
   }
 
 

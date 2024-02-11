@@ -157,6 +157,13 @@ export class AppComponent {
   this.messageService.getMessages(this.messageService.roomNumber);
 
 
+  if(this.messageService.mockMode)
+  {
+    this.messageService.roomNumber=this.messageService.getRoomNumber(this.messageService.selectedHero, this.messageService.selectedToMessageTo)
+    this.messageService.messageArray=this.messageService.filterMessagesByFromAndTo();
+  }
+
+
   }
 
   getHeroesToChat()
