@@ -125,8 +125,6 @@ export class AppComponent {
 
 
 
-
-
   constructor(public messageService: MessageService ) {
 
   }
@@ -146,25 +144,13 @@ export class AppComponent {
 
   get concatenatedText(): string {
 
-
     return this.messageService.messageArray.join('\n');
 
   }
 
 
   getChatMessages() {
-
-    this.messageService.sendHero();
     this.messageService.getMessages();
-
-
-  if(this.messageService.mockMode)
-  {
-    this.messageService.roomNumber=this.messageService.getRoomNumber(this.messageService.selectedHero, this.messageService.selectedToMessageTo)
-    this.messageService.messageArray=this.messageService.filterMessagesByFromAndTo();
-  }
-
-
   }
 
   getHeroesToChat()
@@ -174,9 +160,5 @@ export class AppComponent {
     this.messageService.selectedToMessageTo="";
 
   }
-
-
-
-
 
 }

@@ -35,6 +35,63 @@ export class MessageService {
   }
 
 
+
+  saveMessage(messageModel: messageModel) {
+
+    if (this.mockMode)
+    this.serviceMessageArray.push(messageModel);
+
+    else
+    {
+      var object = {
+        eventType: "ClientWantsToBroadcastToRoom",
+        roomId: this.roomNumber,
+        message: messageModel.ChatMessage
+
+      }
+      this.ws.send(JSON.stringify(object));
+    }
+  }
+
+
+
+  getMessages()
+  {
+
+    this.roomNumber=this.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
+
+    if(this.mockMode)
+    {
+    this.messageArray=this.filterMessagesByFromAndTo();
+    }
+    else
+    {
+      var object = {
+        eventType: "ClientWantsToSignIn",
+        Username: this.selectedHero,
+        roomId: this.roomNumber
+      }
+      this.ws.send(JSON.stringify(object));
+
+
+      var object1 = {
+        eventType: "ClientWantsToEnterRoom",
+        roomId: this.roomNumber
+      }
+      this.ws.send(JSON.stringify(object1));
+
+
+      var object2 = {
+        eventType: "ClientWantsToGetStoredMessagesToRoom",
+        roomId: this.roomNumber
+      }
+      this.ws.send(JSON.stringify(object2));
+    }
+
+
+  }
+
+
   filterMessagesByFromAndTo(): string[] {
 
     this.selectedMessageArray = this.serviceMessageArray.filter(mes => mes.room == this.roomNumber);
@@ -44,23 +101,6 @@ export class MessageService {
     return messageString;
   }
 
-  saveMessage(messageModel: messageModel) {
-
-    if (this.mockMode)
-    this.serviceMessageArray.push(messageModel);
-
-
-      var object = {
-        eventType: "ClientWantsToBroadcastToRoom",
-        roomId: this.roomNumber,
-        message: messageModel.ChatMessage
-
-      }
-      this.ws.send(JSON.stringify(object));
-
-
-
-  }
 
   getRoomNumber(user1: string, user2: string): number {
 
@@ -68,38 +108,6 @@ export class MessageService {
       (number.from === user1 && number.to === user2) || (number.from === user2 && number.to === user1));
 
     return <number>roommodel?.room;
-
-  }
-
-  sendHero() {
-
-    this.roomNumber=this.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
-
-
-    var object = {
-      eventType: "ClientWantsToSignIn",
-      Username: this.selectedHero,
-      roomId: this.roomNumber
-    }
-    this.ws.send(JSON.stringify(object));
-
-
-
-  }
-
-  getMessages()
-  {
-    var object = {
-      eventType: "ClientWantsToEnterRoom",
-      roomId: this.roomNumber
-    }
-    this.ws.send(JSON.stringify(object));
-
-    var object1 = {
-      eventType: "ClientWantsToGetStoredMessagesToRoom",
-      roomId: this.roomNumber
-    }
-    this.ws.send(JSON.stringify(object1));
 
   }
 
