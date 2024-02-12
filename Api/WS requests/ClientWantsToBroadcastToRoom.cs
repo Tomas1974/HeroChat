@@ -11,6 +11,8 @@ public class ClientWantsToBroadcastToRoomDto : BaseDto
 {
     public string message { get; set; }
     public int roomId { get; set; }
+    
+ 
 }
 
 public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadcastToRoomDto>
@@ -23,15 +25,15 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     }
     public override Task Handle(ClientWantsToBroadcastToRoomDto dto, IWebSocketConnection socket)
     {
-            MessageModel messageModel= new MessageModel()
-                {
-                    ChatMessage = dto.message,
-                    ChatFrom = StateService.Connections[socket.ConnectionInfo.Id].Username,
-                    RoomId = dto.roomId,
+        MessageModel messageModel= new MessageModel()
+        {
+            ChatMessage = dto.message,
+            ChatFrom = StateService.Connections[socket.ConnectionInfo.Id].Username,
+            RoomId = dto.roomId,
                     
-                };
+        };
             
-            _messageService.CreateChatMessage(messageModel);
+        _messageService.CreateChatMessage(messageModel);
             
 
         
@@ -39,14 +41,14 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
         var message = new newMessageToStore()
         {
             message = dto.message,
-            username = StateService.Connections[socket.ConnectionInfo.Id].Username,
-            roomId = dto.roomId
+            from = StateService.Connections[socket.ConnectionInfo.Id].Username,
+            roomId = dto.roomId+""
             
         };
         
         StateService.BroadcastToRoom(dto.roomId, JsonSerializer.Serialize(
             message));
-        
+       
         return Task.CompletedTask;
     }
 }
@@ -54,7 +56,7 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
 public class newMessageToStore : BaseDto
 {
     public string message { get; set; }
-    public string username { get; set; }
+    public string from { get; set; }
     
-    public int roomId { get; set; }
+    public string roomId { get; set; }
 }

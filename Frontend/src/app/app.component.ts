@@ -154,7 +154,8 @@ export class AppComponent {
 
   getChatMessages() {
 
-  this.messageService.getMessages(this.messageService.roomNumber);
+    this.messageService.sendHero();
+    this.messageService.getMessages();
 
 
   if(this.messageService.mockMode)
@@ -171,7 +172,7 @@ export class AppComponent {
     this.chatToHeroes=this.superHeroes.filter(heroes => heroes!=this.messageService.selectedHero);
    this.messageService.messageArray=[];
     this.messageService.selectedToMessageTo="";
-    this.messageService.sendHero();
+
   }
 
 

@@ -45,15 +45,20 @@ export class MessageService {
   }
 
   saveMessage(messageModel: messageModel) {
+
+    if (this.mockMode)
     this.serviceMessageArray.push(messageModel);
 
 
       var object = {
         eventType: "ClientWantsToBroadcastToRoom",
-        message: messageModel.ChatMessage,
-        roomId: this.roomNumber
+        roomId: this.roomNumber,
+        message: messageModel.ChatMessage
+
       }
       this.ws.send(JSON.stringify(object));
+
+
 
   }
 
@@ -67,30 +72,34 @@ export class MessageService {
   }
 
   sendHero() {
+
+    this.roomNumber=this.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
+
+
     var object = {
       eventType: "ClientWantsToSignIn",
-      Username: this.selectedHero
+      Username: this.selectedHero,
+      roomId: this.roomNumber
     }
     this.ws.send(JSON.stringify(object));
 
+
+
   }
 
-  getMessages(roomNumber:number)
+  getMessages()
   {
-
     var object = {
       eventType: "ClientWantsToEnterRoom",
-      roomId: roomNumber
+      roomId: this.roomNumber
     }
     this.ws.send(JSON.stringify(object));
 
     var object1 = {
       eventType: "ClientWantsToGetStoredMessagesToRoom",
-      roomId: roomNumber
+      roomId: this.roomNumber
     }
     this.ws.send(JSON.stringify(object1));
-
-
 
   }
 
@@ -115,7 +124,6 @@ export class MessageService {
         this.serviceMessageArray.push(messageModel);
       }
 
-      this.roomNumber=this.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
       this.messageArray=this.filterMessagesByFromAndTo();
     }
 
@@ -123,9 +131,11 @@ export class MessageService {
 
   newMessageToStore(dto:newMessageToStoreDto)
   {
-    console.log(dto.message + " Hej");
-
-
+    // @ts-ignore
+    let message:messageModel={room: dto.roomId, ChatMessage: dto.message, ChatFrom: dto.from}
+    // @ts-ignore
+    this.serviceMessageArray.push(message);
+    this.messageArray=this.filterMessagesByFromAndTo();
   }
 
 

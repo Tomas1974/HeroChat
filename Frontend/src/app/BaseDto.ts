@@ -20,9 +20,14 @@ export class ServerSendStoredMessageToClientDto extends BaseDto<ServerSendStored
 }
 
 
+
+
 export class newMessageToStoreDto extends BaseDto<newMessageToStoreDto> {
+
   message?: string;
-  username?:string;
-  roomId?:number;
+  from?:string;
+  roomId?:string;
 
 }
+
+
