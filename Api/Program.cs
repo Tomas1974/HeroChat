@@ -9,57 +9,72 @@ using Npgsql;
 using Service;
 using ws;
 
-
-
-var builder = WebApplication.CreateBuilder(args);
-
-if (builder.Environment.IsDevelopment())
+public static class Startup
 {
-    builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString,
-        dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
+   
+
+public static void Main(string[] args)
+{
+    Statup(args);
+    Console.ReadLine();
 }
 
-if (builder.Environment.IsProduction())
+public static void Statup(string[] args)
 {
-    builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString);
-}
+    
 
-builder.Services.AddSingleton<ChatMessageRepository>();
-builder.Services.AddSingleton<MessageService>();
+    var builder = WebApplication.CreateBuilder(args);
 
-var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
+    if (builder.Environment.IsDevelopment())
+    {
+        builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString,
+            dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
+    }
 
-var app = builder.Build();
+    if (builder.Environment.IsProduction())
+    {
+        builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString);
+    }
+
+    builder.Services.AddSingleton<ChatMessageRepository>();
+    builder.Services.AddSingleton<MessageService>();
+
+    var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
+
+    var app = builder.Build();
 
 //app.Services.GetService<NpgsqlDataSource>().OpenConnection().Execute("SELECT 'hello world'");
 
-var server = new WebSocketServer("ws://0.0.0.0:8181");
+    var server = new WebSocketServer("ws://0.0.0.0:8181");
 
 
-server.Start(ws =>
-{
-    ws.OnOpen = () =>
+    server.Start(ws =>
     {
-        StateService.AddConnection(ws);
-    };
-    ws.OnMessage = async message =>
-    {
-        // evaluate whether or not message.eventType == 
-        // trigger event handler
-        try
+        ws.OnOpen = () =>
         {
-            await app.InvokeClientEventHandler(clientEventHandlers, ws, message);
-
-        }
-        catch (Exception e)
+            StateService.AddConnection(ws);
+        };
+        ws.OnMessage = async message =>
         {
-            ws.Send(e.Message);
-            Console.WriteLine(e.Message);
-            Console.WriteLine(e.InnerException);
-            Console.WriteLine(e.StackTrace);
-            // your exception handling here
-        }
-    };
-});
+            // evaluate whether or not message.eventType == 
+            // trigger event handler
+            try
+            {
+                await app.InvokeClientEventHandler(clientEventHandlers, ws, message);
 
-Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                ws.Send(e.Message);
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.InnerException);
+                Console.WriteLine(e.StackTrace);
+                // your exception handling here
+            }
+        };
+    });
+}
+}
+
+
+
