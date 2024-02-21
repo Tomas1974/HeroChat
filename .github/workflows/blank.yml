@@ -7,7 +7,7 @@ on:
 
   workflow_dispatch: 
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -16,5 +16,6 @@ jobs:
         with: 
           dotnet-version: | 
              8.0.x
+            
       - name: Test
         run: cd Tests && dotnet test
