@@ -21,7 +21,7 @@ public static void Main(string[] args)
 
 public static void Statup(string[] args)
 {
-    
+    Console.WriteLine("THE ENV VAR IS: "+Environment.GetEnvironmentVariable("pgconn"));
 
     var builder = WebApplication.CreateBuilder(args);
 

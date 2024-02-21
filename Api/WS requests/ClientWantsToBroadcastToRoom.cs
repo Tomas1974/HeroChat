@@ -25,15 +25,7 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     }
     public override Task Handle(ClientWantsToBroadcastToRoomDto dto, IWebSocketConnection socket)
     {
-        MessageModel messageModel= new MessageModel()
-        {
-            ChatMessage = dto.message,
-            ChatFrom = StateService.Connections[socket.ConnectionInfo.Id].Username,
-            RoomId = dto.roomId,
-                    
-        };
-            
-        _messageService.CreateChatMessage(messageModel);
+      
             
 
         
@@ -49,6 +41,23 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
         StateService.BroadcastToRoom(dto.roomId, JsonSerializer.Serialize(
             message));
        
+        
+        MessageModel messageModel= new MessageModel()
+        {
+            ChatMessage = dto.message,
+            ChatFrom = StateService.Connections[socket.ConnectionInfo.Id].Username,
+            RoomId = dto.roomId,
+                    
+        };
+            
+          _messageService.CreateChatMessage(messageModel);
+        
+        
+        
+        
+        
+        
+        
         return Task.CompletedTask;
     }
 }
