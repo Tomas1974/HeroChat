@@ -16,6 +16,9 @@ jobs:
         with: 
           dotnet-version: | 
              8.0.x
-            
+      
+      - name: run Api
+        run: cd Api && dotnet run
+      
       - name: Test
-        run: dotnet test
+        run: cd Tests && dotnet test
