@@ -21,8 +21,6 @@ public static void Main(string[] args)
 
 public static void Statup(string[] args)
 {
-    Console.WriteLine("THE ENV VAR IS: "+Environment.GetEnvironmentVariable("pgconn"));
-
     var builder = WebApplication.CreateBuilder(args);
 
     if (builder.Environment.IsDevelopment())
@@ -42,9 +40,7 @@ public static void Statup(string[] args)
     var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
 
     var app = builder.Build();
-
-//app.Services.GetService<NpgsqlDataSource>().OpenConnection().Execute("SELECT 'hello world'");
-
+    
     var server = new WebSocketServer("ws://0.0.0.0:8181");
 
 
