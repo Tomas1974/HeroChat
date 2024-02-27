@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {message_mock} from "./Data/message_mock";
-import {messageModel, roomModel} from "./Data/messageModel";
-import {roomNumberArray_mock} from "./Data/roomNumberArray";
+import {message_mock} from "./Data/Mock_data/message_mock";
+import {messageModel, roomModel} from "./Data/Mock_data/messageModel";
+import {roomNumberArray_mock} from "./Data/Mock_data/roomNumberArray";
 import {BaseDto, newMessageToStoreDto, ServerSendStoredMessageToClientDto} from "./BaseDto";
 
 @Injectable({

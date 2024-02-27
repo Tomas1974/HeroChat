@@ -1,4 +1,4 @@
-import {messageModel} from "./Data/messageModel";
+import {messageModel} from "./Data/Mock_data/messageModel";
 
 export class BaseDto<T> {
   eventType: string;

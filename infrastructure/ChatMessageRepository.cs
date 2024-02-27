@@ -18,12 +18,12 @@ public class ChatMessageRepository(NpgsqlDataSource _dataSource)
     
     public MessageModel CreateMessage(MessageModel message)
     {
-        var sql =
+       var sql =
             @" INSERT INTO messages (ChatFrom,roomid,chatmessage) VALUES (@chatFrom, @roomId, @chatMessage) RETURNING *;";
 
         using (var conn = _dataSource.OpenConnection())
         {
             return conn.QueryFirst<MessageModel>(sql, new { chatFrom=message.ChatFrom, roomId=message.RoomId, chatMessage=message.ChatMessage});
-        }
+        } 
     }
 }

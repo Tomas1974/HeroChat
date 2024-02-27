@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from "./message.service";
-import {messageModel} from "./Data/messageModel";
+import {messageModel} from "./Data/Mock_data/messageModel";
 
 
 @Component({
