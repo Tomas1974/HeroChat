@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Text.Json;
 using Dapper;
 using Fleck;
 using infrastructure;
@@ -61,6 +62,11 @@ public static void Statup(string[] args)
             }
             catch (Exception e)
             {
+                ws.Send(JsonSerializer.Serialize(new ServerSendsErrorMessageToClient()
+                {
+
+                    errorMessage = e.Message
+                }));
                 ws.Send(e.Message);
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.InnerException);
@@ -73,4 +79,7 @@ public static void Statup(string[] args)
 }
 
 
-
+public class ServerSendsErrorMessageToClient : BaseDto
+{
+    public string errorMessage { get; set; }
+}
