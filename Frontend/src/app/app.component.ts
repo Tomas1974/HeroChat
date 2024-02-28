@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MessageService} from "./message.service";
+import {BackendDataService} from "./Data/DataServices/backendData.service";
 import {messageModel} from "./Data/Mock_data/messageModel";
 
 
@@ -125,7 +125,7 @@ export class AppComponent {
 
 
 
-  constructor(public messageService: MessageService ) {
+  constructor(public messageService: BackendDataService ) { //alternativ MockDataService
 
   }
 

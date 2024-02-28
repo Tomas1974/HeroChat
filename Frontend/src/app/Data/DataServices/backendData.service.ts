@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
-import {message_mock} from "./Data/Mock_data/message_mock";
-import {messageModel, roomModel} from "./Data/Mock_data/messageModel";
-import {roomNumberArray_mock} from "./Data/Mock_data/roomNumberArray";
-import {BaseDto, newMessageToStoreDto, ServerSendStoredMessageToClientDto} from "./BaseDto";
-import {Idata} from "./Data/DataInterface/idata";
-import {BackendDataService} from "./Data/backend-data.service";
+import {message_mock} from "../Mock_data/message_mock";
+import {messageModel, roomModel} from "../Mock_data/messageModel";
+import {roomNumberArray_mock} from "../Mock_data/roomNumberArray";
+import {BaseDto, newMessageToStoreDto, ServerSendStoredMessageToClientDto} from "../../BaseDto";
+import {Idata} from "./idata";
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService implements Idata{
+export class BackendDataService implements Idata{
 
-  //serviceMessageArray = message_mock; //Use this if Mockmode is true:
   serviceMessageArray: messageModel[] = []; //Use this if Mockmode is false:
   roomNumberArray: roomModel[] = roomNumberArray_mock;
-  mockMode : boolean=false;
 
   selectedMessageArray: messageModel[] = [];
   superHeroes: string[] = ["Superman", "Spiderman", "Iron Man", "Batman", "Captain America"];
@@ -22,13 +20,13 @@ export class MessageService implements Idata{
   roomNumber:number=0;
   selectedToMessageTo: string="";
   messageArray: string[]=[];
-  interFaceData: Idata=BackendDataService
+
 
 
 
   ws: WebSocket = new WebSocket("ws://localhost:8181")
 
-  constructor(private backendData: BackendDataService) {
+  constructor() {
     this.ws.onmessage = message => {
       const messageFromServer = JSON.parse(message.data) as BaseDto<any>;
       // @ts-ignore
@@ -41,11 +39,6 @@ export class MessageService implements Idata{
 
   saveMessage(messageModel: messageModel) {
 
-    if (this.mockMode)
-    this.serviceMessageArray.push(messageModel);
-
-    else
-    {
       var object = {
         eventType: "ClientWantsToBroadcastToRoom",
         roomId: this.roomNumber,
@@ -53,7 +46,7 @@ export class MessageService implements Idata{
 
       }
       this.ws.send(JSON.stringify(object));
-    }
+
   }
 
 
@@ -63,12 +56,7 @@ export class MessageService implements Idata{
 
     this.roomNumber=this.getRoomNumber(this.selectedHero, this.selectedToMessageTo)
 
-    if(this.mockMode)
-    {
-    this.messageArray=this.filterMessagesByFromAndTo();
-    }
-    else
-    {
+
       var object = {
         eventType: "ClientWantsToSignIn",
         Username: this.selectedHero,
@@ -89,8 +77,6 @@ export class MessageService implements Idata{
         roomId: this.roomNumber
       }
       this.ws.send(JSON.stringify(object2));
-    }
-
 
   }
 

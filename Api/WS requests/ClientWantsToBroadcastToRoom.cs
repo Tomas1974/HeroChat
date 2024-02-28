@@ -26,13 +26,15 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     {
         _messageService = messageService;
     }
+    
+    
     public override async Task Handle(ClientWantsToBroadcastToRoomDto dto, IWebSocketConnection socket)
     {
-        await this.isMessageToxic(dto.message);
+        string messageThatHasBeenChecked=await isMessageToxic(dto.message);
             
         var message = new newMessageToStore()
         {
-            message = dto.message,
+            message = messageThatHasBeenChecked,
             from = StateService.Connections[socket.ConnectionInfo.Id].Username,
             roomId = dto.roomId+""
             
@@ -64,13 +66,12 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     }
     
     
-    
-    private async Task isMessageToxic(string message)
+    private async Task<string> isMessageToxic(string message)
     {
         
-
+        Console.WriteLine("Beskeden "+message);
         HttpClient client = new HttpClient();
-
+        
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://herochat.cognitiveservices.azure.com/contentsafety/text:analyze?api-version=2023-10-01");
 
         request.Headers.Add("accept", "application/json");
@@ -83,33 +84,23 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
 
         
         request.Content = new StringContent(JsonSerializer.Serialize(req));
-    //    request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json", Environment.GetEnvironmentVariable("KEY"));
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-    ;
-
         
         HttpResponseMessage response = await client.SendAsync(request);
         response.EnsureSuccessStatusCode();
         string responseBody = await response.Content.ReadAsStringAsync();
         var obj = JsonSerializer.Deserialize<ContentFilterResponse>(responseBody);
         var isToxic=obj.categoriesAnalysis.Count(e => e.severity > 1) >= 1;
+        
         if (isToxic)
-            throw new ValidationException("Such speech is not allowed");
+            message = "Such speech is not allowed";
+
+        return message;
     }
-    
-    
-    
     
     
 }
 
-// public class RequestModel 
-// {
-//     public string text { get; set; }
-//     public List<string> categories { get; set; }
-//     public string outputType { get; set; }
-//      
-// }
 
 public class newMessageToStore : BaseDto
 {

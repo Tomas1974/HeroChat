@@ -62,24 +62,12 @@ public static void Statup(string[] args)
             }
             catch (Exception e)
             {
-                ws.Send(JsonSerializer.Serialize(new ServerSendsErrorMessageToClient()
-                {
-
-                    errorMessage = e.Message
-                }));
-                ws.Send(e.Message);
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.InnerException);
                 Console.WriteLine(e.StackTrace);
-                // your exception handling here
             }
         };
     });
 }
 }
 
-
-public class ServerSendsErrorMessageToClient : BaseDto
-{
-    public string errorMessage { get; set; }
-}
