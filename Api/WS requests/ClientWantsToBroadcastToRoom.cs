@@ -51,8 +51,13 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
             RoomId = dto.roomId,
                     
         };
+        if (messageThatHasBeenChecked != "Such speech is not allowed")
+        {
+            _messageService.CreateChatMessage(messageModel);
+            Console.WriteLine(messageThatHasBeenChecked);
             
-          _messageService.CreateChatMessage(messageModel);
+            
+        }
         
     }
 
@@ -69,15 +74,16 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     private async Task<string> isMessageToxic(string message)
     {
         
-        Console.WriteLine("Beskeden "+message);
         HttpClient client = new HttpClient();
         
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://herochat.cognitiveservices.azure.com/contentsafety/text:analyze?api-version=2023-10-01");
 
         request.Headers.Add("accept", "application/json");
+        
         request.Headers.Add("Ocp-Apim-Subscription-Key", "025eb163a0cb4821b382cf00a2ae292c");
-
-
+        //request.Headers.Add("Ocp-Apim-Subscription-Key", Environment.GetEnvironmentVariable("languageKey"));
+        
+        
        var req = new RequestModel(message, new List<string>() 
             { "Hate", "Violence" },
             "FourSeverityLevels");
