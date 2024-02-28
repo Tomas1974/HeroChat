@@ -3,11 +3,13 @@ import {message_mock} from "./Data/Mock_data/message_mock";
 import {messageModel, roomModel} from "./Data/Mock_data/messageModel";
 import {roomNumberArray_mock} from "./Data/Mock_data/roomNumberArray";
 import {BaseDto, newMessageToStoreDto, ServerSendStoredMessageToClientDto} from "./BaseDto";
+import {Idata} from "./Data/DataInterface/idata";
+import {BackendDataService} from "./Data/backend-data.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
+export class MessageService implements Idata{
 
   //serviceMessageArray = message_mock; //Use this if Mockmode is true:
   serviceMessageArray: messageModel[] = []; //Use this if Mockmode is false:
@@ -20,12 +22,13 @@ export class MessageService {
   roomNumber:number=0;
   selectedToMessageTo: string="";
   messageArray: string[]=[];
+  interFaceData: Idata=BackendDataService
 
 
 
   ws: WebSocket = new WebSocket("ws://localhost:8181")
 
-  constructor() {
+  constructor(private backendData: BackendDataService) {
     this.ws.onmessage = message => {
       const messageFromServer = JSON.parse(message.data) as BaseDto<any>;
       // @ts-ignore

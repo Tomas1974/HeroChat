@@ -30,9 +30,6 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     {
         await this.isMessageToxic(dto.message);
             
-
-        
-            
         var message = new newMessageToStore()
         {
             message = dto.message,
@@ -55,9 +52,19 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
             
           _messageService.CreateChatMessage(messageModel);
         
-     
     }
 
+    
+    public record RequestModel(string text, List<string> categories, string outputType)
+    {
+        public override string ToString()
+        {
+            return $"{{ text = {text}, categories = {categories}, outputType = {outputType} }}";
+        }
+    }
+    
+    
+    
     private async Task isMessageToxic(string message)
     {
         
@@ -70,12 +77,10 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
         request.Headers.Add("Ocp-Apim-Subscription-Key", "025eb163a0cb4821b382cf00a2ae292c");
 
 
-        var req = new RequestModel
-        {
-            text = message,
-            categories = new List<string>() { "Hate", "Violence" },
-            outputType = "FourSeverityLevels"
-        };
+       var req = new RequestModel(message, new List<string>() 
+            { "Hate", "Violence" },
+            "FourSeverityLevels");
+
         
         request.Content = new StringContent(JsonSerializer.Serialize(req));
     //    request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json", Environment.GetEnvironmentVariable("KEY"));
@@ -98,13 +103,13 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     
 }
 
-public class RequestModel 
-{
-    public string text { get; set; }
-    public List<string> categories { get; set; }
-    public string outputType { get; set; }
-     
-}
+// public class RequestModel 
+// {
+//     public string text { get; set; }
+//     public List<string> categories { get; set; }
+//     public string outputType { get; set; }
+//      
+// }
 
 public class newMessageToStore : BaseDto
 {
