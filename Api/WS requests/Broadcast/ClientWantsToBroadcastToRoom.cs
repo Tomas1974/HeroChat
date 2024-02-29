@@ -7,16 +7,10 @@ using lib;
 using Service;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using a;
 
 namespace ws;
 
-public class ClientWantsToBroadcastToRoomDto : BaseDto
-{
-    public string message { get; set; }
-    public int roomId { get; set; }
-    
- 
-}
 
 public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadcastToRoomDto>
 {
@@ -55,11 +49,9 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
         {
             _messageService.CreateChatMessage(messageModel);
             Console.WriteLine(messageThatHasBeenChecked);
-            
-            
+                        
         }
-        
-    }
+        }
 
     
     public record RequestModel(string text, List<string> categories, string outputType)
@@ -80,8 +72,8 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
 
         request.Headers.Add("accept", "application/json");
         
-        request.Headers.Add("Ocp-Apim-Subscription-Key", "025eb163a0cb4821b382cf00a2ae292c");
-        //request.Headers.Add("Ocp-Apim-Subscription-Key", Environment.GetEnvironmentVariable("languageKey"));
+        //request.Headers.Add("Ocp-Apim-Subscription-Key", "025eb163a0cb4821b382cf00a2ae292c");
+        request.Headers.Add("Ocp-Apim-Subscription-Key", Environment.GetEnvironmentVariable("languageKey"));
         
         
        var req = new RequestModel(message, new List<string>() 
@@ -105,29 +97,5 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     }
     
     
-}
-
-
-public class newMessageToStore : BaseDto
-{
-    public string message { get; set; }
-    public string from { get; set; }
-    
-    public string roomId { get; set; }
-}
-
-
-
-
-public class CategoriesAnalysis
-{
-    public string category { get; set; }
-    public int severity { get; set; }
-}
-
-public class ContentFilterResponse
-{
-    public List<object> blocklistsMatch { get; set; }
-    public List<CategoriesAnalysis> categoriesAnalysis { get; set; }
 }
 
