@@ -40,7 +40,7 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
             message));
        
         
-        /**************** Gemmer i data i messagemodel til gemning i database ************/
+        /**************** Gemmer data i messagemodel til gemning i database ************/
         MessageModel messageModel= new MessageModel()
         {
             ChatMessage = dto.message,
