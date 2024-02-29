@@ -33,6 +33,13 @@ public class ContentFilterResponse
 }
 
 
+public class RequestModel 
+{
+    public string text { get; set; }
+    public List<string> categories { get; set; }
+    public string outputType { get; set; }
+     
+}
 
 /******************Output*********************/
 

@@ -51,17 +51,8 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
             Console.WriteLine(messageThatHasBeenChecked);
                         
         }
-        }
+      }
 
-    
-    public record RequestModel(string text, List<string> categories, string outputType)
-    {
-        public override string ToString()
-        {
-            return $"{{ text = {text}, categories = {categories}, outputType = {outputType} }}";
-        }
-    }
-    
     
     private async Task<string> isMessageToxic(string message)
     {
@@ -71,14 +62,15 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://herochat.cognitiveservices.azure.com/contentsafety/text:analyze?api-version=2023-10-01");
 
         request.Headers.Add("accept", "application/json");
-        
-        //request.Headers.Add("Ocp-Apim-Subscription-Key", "025eb163a0cb4821b382cf00a2ae292c");
         request.Headers.Add("Ocp-Apim-Subscription-Key", Environment.GetEnvironmentVariable("languageKey"));
         
         
-       var req = new RequestModel(message, new List<string>() 
-            { "Hate", "Violence" },
-            "FourSeverityLevels");
+        var req = new RequestModel
+        {
+            text = message,
+            categories = new List<string>() { "Hate", "Violence" },
+            outputType = "FourSeverityLevels"
+        };
 
         
         request.Content = new StringContent(JsonSerializer.Serialize(req));
@@ -98,4 +90,5 @@ public class ClientWantsToBroadcastToRoom : BaseEventHandler<ClientWantsToBroadc
     
     
 }
+
 
